@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FitPulse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(15, 16, 20, 0.9), rgba(15, 16, 20, 0.9)), 
+                        url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop') center/cover;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .mission-img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-glow);
+        }
+
+        @media (max-width: 768px) {
+            .stats-banner {
+                grid-template-columns: 1fr;
+            }
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            .stat-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-heartbeat"></i> Fit<span>Pulse</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="about.html" style="color: var(--primary-color);">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html" class="btn btn-primary">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <header class="about-hero">
+        <div class="container slide-up">
+            <h1 style="color: #fff;">About <span style="color: var(--primary-color);">FitPulse</span></h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; color: #ccc;">We believe that fitness should be measurable, visual, and accessible. Your journey to a healthier life starts here.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-banner slide-up delay-1">
+            <div class="stat-item">
+                <h3>10K+</h3>
+                <p>Workouts Tracked</p>
+            </div>
+            <div class="stat-item">
+                <h3>25K+</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-item">
+                <h3>500K+</h3>
+                <p>Calories Logged</p>
+            </div>
+        </div>
+
+        <section class="section mission-section">
+            <div class="slide-up delay-2">
+                <h2>Our Mission</h2>
+                <p>FitPulse was created to bridge the gap between rigorous athletic tracking and everyday wellness. We provide the tools you need to monitor your body, train your mind, and ultimately transform your life.</p>
+                <p>Whether you're a seasoned athlete or just taking your first steps toward fitness, our platform scales to your needs, providing actionable insights from your own data.</p>
+                <ul style="margin-top: 20px; padding-left: 20px; color: var(--text-muted);">
+                    <li style="margin-bottom: 10px;">✓ Privacy-first data storage</li>
+                    <li style="margin-bottom: 10px;">✓ Intuitive design and analytics</li>
+                    <li style="margin-bottom: 10px;">✓ Comprehensive health tracking</li>
+                </ul>
+            </div>
+            <div class="slide-up delay-3">
+                <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=1469&auto=format&fit=crop" alt="Workout Together" class="mission-img">
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-heartbeat"></i> Fit<span>Pulse</span>
+            </a>
+            <p>&copy; 2026 FitPulse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workouts - FitPulse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo">
+            <i class="fas fa-heartbeat"></i> Fit<span>Pulse</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="btn btn-outline" style="padding: 8px 15px;" id="openWorkoutModal"><i class="fas fa-plus"></i> Log Workout</a></li>
+            <li><a href="#" style="display:flex; align-items:center; gap:10px;"><img src="https://i.pravatar.cc/150?img=11" alt="Profile" style="width:35px; border-radius:50%; border: 2px solid var(--primary-color);"> John Doe</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="workouts.html" class="active"><i class="fas fa-dumbbell"></i> Workouts</a></li>
+                <li><a href="progress.html"><i class="fas fa-chart-line"></i> Progress Analytics</a></li>
+                <li><a href="bmi.html"><i class="fas fa-calculator"></i> BMI Calculator</a></li>
+                <li style="margin-top: 30px;"><a href="index.html" style="color: var(--error-red);"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header fade-in" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div>
+                    <h1>Workout History</h1>
+                    <p>Track and manage all your fitness sessions.</p>
+                </div>
+                <button class="btn btn-primary" id="openWorkoutModalBtn"><i class="fas fa-plus"></i> Add Workout</button>
+            </div>
+
+            <!-- Workouts List -->
+            <div class="card slide-up delay-1">
+                <div class="table-container">
+                    <table id="workoutsTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Exercise</th>
+                                <th>Category</th>
+                                <th>Sets x Reps</th>
+                                <th>Weight</th>
+                                <th>Duration</th>
+                                <th>Calories</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Date">2026-09-29</td>
+                                <td data-label="Exercise">Deadlift</td>
+                                <td data-label="Category"><span style="background: rgba(212,255,0,0.1); color: var(--primary-color); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">Strength</span></td>
+                                <td data-label="Sets x Reps">3 x 8</td>
+                                <td data-label="Weight">100 kg</td>
+                                <td data-label="Duration">50 min</td>
+                                <td data-label="Calories">350 kcal</td>
+                                <td data-label="Actions" class="action-btns">
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Date">2026-09-28</td>
+                                <td data-label="Exercise">Treadmill Running</td>
+                                <td data-label="Category"><span style="background: rgba(255,87,34,0.1); color: var(--accent-orange); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">Cardio</span></td>
+                                <td data-label="Sets x Reps">-</td>
+                                <td data-label="Weight">-</td>
+                                <td data-label="Duration">30 min</td>
+                                <td data-label="Calories">400 kcal</td>
+                                <td data-label="Actions" class="action-btns">
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Date">2026-09-27</td>
+                                <td data-label="Exercise">Bench Press</td>
+                                <td data-label="Category"><span style="background: rgba(212,255,0,0.1); color: var(--primary-color); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">Strength</span></td>
+                                <td data-label="Sets x Reps">4 x 10</td>
+                                <td data-label="Weight">80 kg</td>
+                                <td data-label="Duration">45 min</td>
+                                <td data-label="Calories">300 kcal</td>
+                                <td data-label="Actions" class="action-btns">
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Workout Modal -->
+    <div class="modal" id="workoutModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 style="margin-bottom: 20px;">Log New Workout</h2>
+            
+            <form id="addWorkoutForm">
+                <div class="form-group">
+                    <label class="form-label">Exercise Name</label>
+                    <input type="text" class="form-control" required placeholder="e.g. Squat">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" required>
+                            <option value="">Select...</option>
+                            <option value="Strength">Strength</option>
+                            <option value="Cardio">Cardio</option>
+                            <option value="HIIT">HIIT</option>
+                            <option value="Yoga">Yoga</option>
+                            <option value="Running">Running</option>
+                            <option value="Cycling">Cycling</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Sets</label>
+                        <input type="number" class="form-control" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Reps</label>
+                        <input type="number" class="form-control" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control" placeholder="0" step="0.5">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Duration (min)</label>
+                        <input type="number" class="form-control" required placeholder="45">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Calories</label>
+                        <input type="number" class="form-control" placeholder="300">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <textarea class="form-control" rows="2" placeholder="How did it feel?"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Save Workout</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/workout.js"></script>
+</body>
+</html>

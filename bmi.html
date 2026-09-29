@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - FitPulse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bmi-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .bmi-result-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .bmi-value {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 20px 0;
+            color: var(--text-main);
+            transition: color 0.5s;
+        }
+
+        .bmi-category {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .bmi-scale {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .scale-bar {
+            height: 10px;
+            width: 100%;
+            background: linear-gradient(to right, #00cc66 20%, #d4ff00 40%, #ffc107 60%, #ff5722 80%, #ff3366 100%);
+            border-radius: 5px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .scale-indicator {
+            position: absolute;
+            top: -5px;
+            width: 4px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 2px;
+            left: 0%;
+            transition: left 0.5s ease-out;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .bmi-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo">
+            <i class="fas fa-heartbeat"></i> Fit<span>Pulse</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" style="display:flex; align-items:center; gap:10px;"><img src="https://i.pravatar.cc/150?img=11" alt="Profile" style="width:35px; border-radius:50%; border: 2px solid var(--primary-color);"> John Doe</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="workouts.html"><i class="fas fa-dumbbell"></i> Workouts</a></li>
+                <li><a href="progress.html"><i class="fas fa-chart-line"></i> Progress Analytics</a></li>
+                <li><a href="bmi.html" class="active"><i class="fas fa-calculator"></i> BMI Calculator</a></li>
+                <li style="margin-top: 30px;"><a href="index.html" style="color: var(--error-red);"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header fade-in">
+                <h1>BMI Calculator</h1>
+                <p>Check your Body Mass Index to know if you're in a healthy weight range.</p>
+            </div>
+
+            <div class="bmi-container">
+                <div class="card slide-up delay-1">
+                    <h3>Enter Your Details</h3>
+                    <form id="bmiForm" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Height (cm)</label>
+                            <input type="number" id="bmiHeight" class="form-control" required placeholder="e.g. 175" step="0.1" value="180.5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" id="bmiWeight" class="form-control" required placeholder="e.g. 70" step="0.1" value="75">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Calculate BMI</button>
+                    </form>
+                </div>
+
+                <div class="card bmi-result-card slide-up delay-2">
+                    <p style="text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 0;">Your BMI Is</p>
+                    <div class="bmi-value" id="bmiValue">23.0</div>
+                    <div class="bmi-category" id="bmiCategory" style="color: var(--primary-color);">Normal Weight</div>
+
+                    <div class="bmi-scale">
+                        <div class="scale-bar">
+                            <div class="scale-indicator" id="scaleIndicator" style="left: 35%;"></div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Underweight</span>
+                            <span>Normal</span>
+                            <span>Overweight</span>
+                            <span>Obese</span>
+                        </div>
+                    </div>
+                    
+                    <p id="bmiMessage" style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+                        You are in a healthy weight range. Keep up the good work!
+                    </p>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/bmi.js"></script>
+</body>
+</html>
